@@ -22,7 +22,7 @@ class AlienContact(BaseModel):
     is_verified: bool = Field(default=False)
 
     @model_validator(mode="after")
-    def checks(self):
+    def checks(self) -> "AlienContact":
         if (not self.contact_id.startswith("AC")):
             raise Exception("Contact ID must start with 'AC'")
         if ((self.contact_type is ContactType.PHYSICAL and
@@ -37,11 +37,11 @@ class AlienContact(BaseModel):
         return (self)
 
 
-def main():
+def main() -> None:
     try:
         ac = AlienContact(
             contact_id="AC_2024_001",
-            timestamp="2026-07-04T12:34:56+02:00",
+            timestamp=datetime.fromisoformat("2026-07-04T12:34:56+02:00"),
             contact_type=ContactType.RADIO,
             location="Area 51, Nevada",
             signal_strength=8.5,
@@ -67,7 +67,7 @@ def main():
     try:
         ac = AlienContact(
             contact_id="AC_2024_001",
-            timestamp="2026-07-04T12:34:56+02:00",
+            timestamp=datetime.fromisoformat("2026-07-04T12:34:56+02:00"),
             contact_type=ContactType.TELEPATHIC,
             location="Area 51, Nevada",
             signal_strength=8.5,

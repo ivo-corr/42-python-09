@@ -32,7 +32,7 @@ class SpaceMission(BaseModel):
     budget_million: float = Field(ge=1.0, le=10000.0)
 
     @model_validator(mode="after")
-    def check(self):
+    def check(self) -> "SpaceMission":
         if (not self.mission_id.startswith('M')):
             raise Exception("Mission ID must start with 'M'")
         if (not all([m.is_active for m in self.crew])):
@@ -50,12 +50,12 @@ class SpaceMission(BaseModel):
         return (self)
 
 
-def main():
+def main() -> None:
     sm = SpaceMission(
         mission_id="M2024_MARS",
         mission_name="Mars Colony Establishment",
         destination="Mars",
-        launch_date="2026-07-04T12:34:56+02:00",
+        launch_date=datetime.fromisoformat("2026-07-04T12:34:56+02:00"),
         duration_days=900,
         crew=[CrewMember(
             member_id="A00",
@@ -102,7 +102,7 @@ def main():
             mission_id="M2024_MARS",
             mission_name="Mars Colony Establishment",
             destination="Mars",
-            launch_date="2026-07-04T12:34:56+02:00",
+            launch_date=datetime.fromisoformat("2026-07-04T12:34:56+02:00"),
             duration_days=900,
             crew=[CrewMember(
                 member_id="A00",
