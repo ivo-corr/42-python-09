@@ -92,7 +92,7 @@ def main():
     print(f"Duration: {sm.duration_days} days")
     print(f"Budget: {sm.budget_million}")
     print(f"Crew size: {len(sm.crew)}")
-    print(f"Crew member:")
+    print("Crew member:")
     for m in sm.crew:
         print(f"- {m.name} ({m.rank}) - {m.specialization}")
     print("=====================================")
@@ -130,6 +130,7 @@ def main():
             )],
             budget_million=2500
         )
+        _ = sm_two
     except Exception as e:
         print(e)
 

@@ -45,6 +45,7 @@ def main():
             last_maintenance="2026-07-04T12:34:56+02:00",
             notes="Yes hello"
         )
+        _ = stt
     except Exception as e:
         print(e)
 
